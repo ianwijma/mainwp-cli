@@ -7,14 +7,13 @@ class MainWP_CLI_Site extends \WP_CLI_Command
 	/**
 	 * Lists the child sites
 	 *
-	 *
+	 * @synopsis
 	 */
 	public function list( $args, $assoc_args )
 	{
-		$sites = new \MainWP_Manage_Sites_List_Table();
-		$sites->prepare_items( false );
-		die(var_dump( $sites->has_items() ));
-
+		// Abusing the sites to give me a list
+		$mainWpCommands = new \MainWP_WP_CLI_Command();
+		$mainWpCommands->sites( [], ['list' => null] );
 	}
 
 	/**
@@ -63,6 +62,12 @@ class MainWP_CLI_Site extends \WP_CLI_Command
 	 * [--force-ipv4]
 	 * : Do you want to force IPv4 for this child site?.
 	 *
+	 * ## EXAMPLES
+	 *
+	 *     wp mwp site add --hostname=example.com --admin=admin --unique-id=ZDGy03su
+	 *     wp mwp site add --hostname=example.com --admin=admin
+	 *
+	 * @synopsis --hostname=<hostname> --admin=<admin>
 	 */
 	public function add( $__, $options )
 	{
@@ -95,6 +100,52 @@ class MainWP_CLI_Site extends \WP_CLI_Command
 		} else {
 			\WP_CLI::warning( 'Nothing happend' );
 		}
+	}
+
+	/**
+	 * Sync Data with Child Sites
+	 *
+	 * ## OPTIONS
+	 *
+	 * [<websiteid>]
+	 * : The id (or ids, comma separated) of the child sites that need to be synced.
+	 *
+	 * [--all]
+	 * : If set, all child sites will be synced.
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     wp mainwp sync 2,5
+	 *     wp mainwp sync --all
+	 *
+	 * @synopsis [<websiteid>] [--all]
+	 */
+	public function sync( $args, $assoc_args )
+	{
+		// For this one the original just works logically
+		$mainWpCommands = new \MainWP_WP_CLI_Command();
+		$mainWpCommands->sync( $args, $assoc_args );
+	}
+
+	/**
+	 * Reconnect with Child Sites
+	 *
+	 * ## OPTIONS
+	 *
+	 * [<websiteid>]
+	 * : The id (or ids, comma separated) of the child sites that need to be reconnect.
+	 *
+	 * ## EXAMPLES
+	 *
+	 *     wp mainwp reconnect 2,5
+	 *
+	 * @synopsis [<websiteid>]
+	 */
+	public function reconnect( $args, $assoc_args )
+	{
+		// For this one the original just works logically
+		$mainWpCommands = new \MainWP_WP_CLI_Command();
+		$mainWpCommands->reconnect( $args, $assoc_args );
 	}
 
 	/**
