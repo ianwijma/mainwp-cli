@@ -1,0 +1,27 @@
+{
+    "name": "ianwijma/mainwp-cli",
+    "description": "Adds proper WP CLI intergration to your MainWP instances",
+    "license": "GPL-3.0-or-later",
+    "type": "wordpress-plugin",
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "readme": "README.md",
+    "authors": [
+        {
+            "name": "Ian Wijma",
+            "email": "ian@wij.ma",
+            "homepage": "https://ian.wij.ma/"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/ianwijma/mainwp-cli/issues",
+        "source": "https://github.com/ianwijma/mainwp-cli"
+    },
+    "require": {
+        "composer/installers": "^1.6",
+        "php": ">=5.6|>=7.0"
+    },
+    "require-dev": {
+        "wp-cli/wp-cli": "^2.0"
+    }
+}
